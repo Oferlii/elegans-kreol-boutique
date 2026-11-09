@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ht" class="lang-ht">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Elegans Kreòl | Haute Couture & Cosmétiques</title>
+  
+  <!-- Favicon & Metadata -->
+  <meta name="description" content="Elegans Kreòl - Elite Fashion & Luxury Cosmetics. Ekselans, distenksyon, ak bote san limit.">
+  <meta name="theme-color" content="#0a0a0c">
+  
+  <!-- Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       CSS VARIABLES & LUXURY DESIGN SYSTEM
+    ========================================= */
+    :root {
+      --bg-deep: #070709;
+      --bg-card: #111116;
+      --bg-card-hover: #17171f;
+      --gold-primary: #d4af37;
+      --gold-light: #f5e6a8;
+      --gold-dark: #997a15;
+      --gold-gradient: linear-gradient(135deg, #f5e6a8 0%, #d4af37 50%, #8a6813 100%);
+      --text-primary: #f8f8f8;
+      --text-secondary: #a0a0a8;
+      --text-muted: #666670;
+      --border-gold: rgba(212, 175, 55, 0.25);
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --shadow-premium: 0 16px 36px rgba(0, 0, 0, 0.65);
+      --radius-sm: 4px;
+      --radius-md: 10px;
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #020203;
+      color: var(--text-primary);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Mobile First Centered Shell */
+    .app-viewport {
+      width: 100%;
+      max-width: 500px;
+      background-color: var(--bg-deep);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+      border-left: 1px solid rgba(255, 255, 255, 0.03);
+      border-right: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    /* =========================================
+       LANGUAGE TOGGLING ARCHITECTURE
+    ========================================= */
+    html.lang-ht [data-lang="fr"] { display: none !important; }
+    html.lang-fr [data-lang="ht"] { display: none !important; }
+
+    /* =========================================
+       PRELOADER COMPONENT
+    ========================================= */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #050507;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .preloader-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .spinner-box {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .spinner-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 1px solid transparent;
+      border-top-color: var(--gold-primary);
+      border-right-color: var(--gold-dark);
+      border-radius: 50%;
+      animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    }
+
+    .spinner-ring:nth-child(2) {
+      width: 60px;
+      height: 60px;
+      animation-duration: 1.8s;
+      animation-direction: reverse;
+      border-top-color: var(--gold-light);
+    }
+
+    .spinner-monogram {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      color: var(--gold-light);
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .preloader-text {
+      margin-top: 20px;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      opacity: 0.8;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* =========================================
+       NAVIGATION BAR
+    ========================================= */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: rgba(7, 7, 9, 0.88);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border-gold);
+    }
+
+    .brand-logo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-logo h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .brand-logo span {
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    .lang-switcher {
+      display: flex;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 30px;
+      padding: 3px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .lang-btn.active {
+      background: var(--gold-gradient);
+      color: #070709;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+    }
+
+    /* =========================================
+       HERO VIDEO & WELCOME SECTION
+    ========================================= */
+    .hero {
+      position: relative;
+      height: 480px;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .hero-media-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      filter: brightness(0.65) contrast(1.15);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(7, 7, 9, 0.1) 0%,
+        rgba(7, 7, 9, 0.6) 60%,
+        rgba(7, 7, 9, 1) 100%
+      );
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 5px 12px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--border-gold);
+      border-radius: 50px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-greeting {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 400;
+      margin-bottom: 10px;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .hero-greeting em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-slogan {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      max-width: 90%;
+    }
+
+    /* =========================================
+       SECTION TITLES
+    ========================================= */
+    .section-header {
+      padding: 34px 20px 18px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-subtitle {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--gold-primary);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .gold-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold-gradient);
+      margin: 10px auto 0;
+    }
+
+    /* =========================================
+       PRODUCT SHOWCASE GRID
+    ========================================= */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding: 0 16px;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .product-card:active {
+      transform: scale(0.98);
+      border-color: var(--border-gold);
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      width: 100%;
+      height: 190px;
+      overflow: hidden;
+      background: #181820;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(7, 7, 9, 0.75);
+      border: 1px solid var(--border-gold);
+      padding: 3px 8px;
+      font-size: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      color: var(--gold-light);
+      backdrop-filter: blur(4px);
+    }
+
+    .product-details {
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .product-category {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .product-price {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 10px;
+    }
+
+    .btn-reserve {
+      width: 100%;
+      padding: 8px 0;
+      background: transparent;
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      border-radius: var(--radius-sm);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-reserve:hover, .btn-reserve:active {
+      background: var(--gold-primary);
+      color: #070709;
+    }
+
+    /* =========================================
+       TESTIMONIALS SLIDER SECTION
+    ========================================= */
+    .testimonials-section {
+      padding: 10px 16px;
+      margin-top: 20px;
+    }
+
+    .testimonial-card-container {
+      background: linear-gradient(145deg, #121217, #0a0a0d);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      position: relative;
+      box-shadow: var(--shadow-premium);
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .quote-icon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 45px;
+      line-height: 1;
+      color: var(--gold-dark);
+      opacity: 0.4;
+      margin-bottom: -10px;
+    }
+
+    .testimonial-slide {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .testimonial-slide.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .testimonial-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: #ececec;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+
+    .client-name {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+    }
+
+    .client-location {
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .slider-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: var(--transition-smooth);
+    }
+
+    .dot.active {
+      width: 18px;
+      border-radius: 4px;
+      background: var(--gold-primary);
+    }
+
+    /* =========================================
+       OPERATIONAL & CONCIERGE CONTACT BLOCK
+    ========================================= */
+    .contact-block {
+      padding: 20px 16px 36px;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 22px 18px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .clock-badge {
+      width: 38px;
+      height: 38px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--border-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      color: var(--gold-light);
+    }
+
+    .schedule-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .schedule-hours {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .schedule-sub {
+      font-size: 10px;
+      color: var(--gold-dark);
+      margin-top: 2px;
+    }
+
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .btn-whatsapp {
+      background: var(--gold-gradient);
+      color: #070709;
+      box-shadow: 0 4px 18px rgba(212, 175, 55, 0.25);
+      border: none;
+    }
+
+    .btn-whatsapp:active {
+      transform: scale(0.98);
+      filter: brightness(1.1);
+    }
+
+    .btn-email {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+    }
+
+    .btn-email:active {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-gold);
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 24px 20px 30px;
+      text-align: center;
+      background: #050507;
+      margin-top: auto;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      letter-spacing: 2px;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .footer-desc {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .footer-copy {
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.3);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================
+       LUXURY PRELOADER
+  ========================================= -->
+  <div id="preloader">
+    <div class="spinner-box">
+      <div class="spinner-ring"></div>
+      <div class="spinner-ring"></div>
+      <div class="spinner-monogram">EK</div>
+    </div>
+    <div class="preloader-text" data-lang="ht">Chajman Eksklizif...</div>
+    <div class="preloader-text" data-lang="fr">Chargement Exclusif...</div>
+  </div>
+
+  <!-- =========================================
+       MAIN APP CONTAINER (500px Viewport)
+  ========================================= -->
+  <div class="app-viewport">
+    
+    <!-- TOP NAVIGATION -->
+    <header class="navbar">
+      <div class="brand-logo">
+        <h1>Elegans Kreòl</h1>
+        <span data-lang="ht">Mòd & Kosmetik</span>
+        <span data-lang="fr">Mode & Cosmétique</span>
+      </div>
+
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLanguage('ht')" id="btn-ht">HT 🇭🇹</button>
+        <button class="lang-btn" onclick="setLanguage('fr')" id="btn-fr">FR 🇫🇷</button>
+      </div>
+    </header>
+
+    <!-- HERO SECTION WITH LUXURY VIDEO -->
+    <section class="hero">
+      <div class="hero-media-wrapper">
+        <video class="hero-video" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-in-neon-light-40156-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge">Haute Couture • 2025</div>
+        <h2 class="hero-greeting" data-lang="ht">
+          Byenvini nan <em>Elegans Kreòl</em>
+        </h2>
+        <h2 class="hero-greeting" data-lang="fr">
+          Bienvenue chez <em>Elegans Kreòl</em>
+        </h2>
+
+        <p class="hero-slogan" data-lang="ht">
+          Ekselans, distenksyon ak bote san limit. Eksperyans liks la ki selebre grandè kiltirèl nou.
+        </p>
+        <p class="hero-slogan" data-lang="fr">
+          Excellence, distinction et splendeur intemporelle. L'expérience du luxe célébrant notre identité.
+        </p>
+      </div>
+    </section>
+
+    <!-- MAIN PRODUCT SHOWCASE -->
+    <section>
+      <div class="section-header">
+        <p class="section-subtitle" data-lang="ht">Koleksyon Seleksyone</p>
+        <p class="section-subtitle" data-lang="fr">Collection Sélectionnée</p>
+        <h3 class="section-title" data-lang="ht">Pyès Eksklizif</h3>
+        <h3 class="section-title" data-lang="fr">Pièces Exclusives</h3>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="product-grid">
+        <!-- Product 1 -->
+        <article class="product-card">
+          <div class="product-img-wrapper">
+            <span class="product-tag" data-lang="ht">Nouvo</span>
+            <span class="product-tag" data-lang="fr">Nouveau</span>
+            <img class="product-img" src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600&q=80" alt="Robe en Soie" loading="lazy">
+          </div>
+          <div class="product-details">
+            <div>
+              <span class="product-category" data-lang="ht">Haute Couture</span>
+              <span class="product-category" data-lang="fr">Haute Couture</span>
+              <h4 class="product-name" data-lang="ht">Ròb Swa "Rèn Solèy"</h4>
+              <h4 class="product-name" data-lang="fr">Robe en Soie "Reine Soleil"</h4>
+              <div class="product-price">$380 USD</div>
+            </div>
+            <a href="https://wa.me/50930000000?text=Bonjou%20Elegans%20Kreòl,%20mwen%20enterese%20kòmande%20Ròb%20Swa%20Rèn%20Solèy." class="btn-reserve" data-lang="ht">Kòmande Kounye a</a>
+            <a href="https://wa.me/50930000000?text=Bonjour%20Elegans%20Kreòl,%20je%20souhaite%20commander%20la%20Robe%20en%20Soie%20Reine%20Soleil." class="btn-reserve" data-lang="fr">Commander</a>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product-card">
+          <div class="product-img-wrapper">
+            <span class="product-tag" data-lang="ht">Parfen</span>
+            <span class="product-tag" data-lang="fr">Parfum</span>
+            <img class="product-img" src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="Extrait de Parfum" loading="lazy">
+          </div>
+          <div class="product-details">
+            <div>
+              <span class="product-category" data-lang="ht">Kosmetik</span>
+              <span class="product-category" data-lang="fr">Cosmétique</span>
+              <h4 class="product-name" data-lang="ht">Eliksir Nwa (50ml)</h4>
+              <h4 class="product-name" data-lang="fr">Élixir Noir (50ml)</h4>
+              <div class="product-price">$195 USD</div>
+            </div>
+            <a href="https://wa.me/50930000000?text=Bonjou%20Elegans%20Kreòl,%20mwen%20enterese%20achte%20Eliksir%20Nwa." class="btn-reserve" data-lang="ht">Kòmande Kounye a</a>
+            <a href="https://wa.me/50930000000?text=Bonjour%20Elegans%20Kreòl,%20je%20souhaite%20commander%20Élixir%20Noir." class="btn-reserve" data-lang="fr">Commander</a>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product-card">
+          <div class="product-img-wrapper">
+            <span class="product-tag" data-lang="ht">Bote</span>
+            <span class="product-tag" data-lang="fr">Beauté</span>
+            <img class="product-img" src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80" alt="Lipstick" loading="lazy">
+          </div>
+          <div class="product-details">
+            <div>
+              <span class="product-category" data-lang="ht">Makiyaj</span>
+              <span class="product-category" data-lang="fr">Maquillage</span>
+              <h4 class="product-name" data-lang="ht">Woujalè "Kreyòl Gold"</h4>
+              <h4 class="product-name" data-lang="fr">Rouge à Lèvres "Or Pur"</h4>
+              <div class="product-price">$65 USD</div>
+            </div>
+            <a href="https://wa.me/50930000000?text=Bonjou%20Elegans%20Kreòl,%20mwen%20vle%20rezève%20Woujalè%20Kreyòl%20Gold." class="btn-reserve" data-lang="ht">Kòmande Kounye a</a>
+            <a href="https://wa.me/50930000000?text=Bonjour%20Elegans%20Kreòl,%20je%20souhaite%20commander%20le%20Rouge%20à%20Lèvres%20Or%20Pur." class="btn-reserve" data-lang="fr">Commander</a>
+          </div>
+        </article>
+
+        <!-- Product 4 -->
+        <article class="product-card">
+          <div class="product-img-wrapper">
+            <span class="product-tag" data-lang="ht">Kwi</span>
+            <span class="product-tag" data-lang="fr">Cuir</span>
+            <img class="product-img" src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80" alt="Luxury Handbag" loading="lazy">
+          </div>
+          <div class="product-details">
+            <div>
+              <span class="product-category" data-lang="ht">Aksesoa</span>
+              <span class="product-category" data-lang="fr">Accessoire</span>
+              <h4 class="product-name" data-lang="ht">Sak Men "Monak"</h4>
+              <h4 class="product-name" data-lang="fr">Sac à Main "Monarque"</h4>
+              <div class="product-price">$450 USD</div>
+            </div>
+            <a href="https://wa.me/50930000000?text=Bonjou%20Elegans%20Kreòl,%20mwen%20vle%20kòmande%20Sak%20Men%20Monak." class="btn-reserve" data-lang="ht">Kòmande Kounye a</a>
+            <a href="https://wa.me/50930000000?text=Bonjour%20Elegans%20Kreòl,%20je%20souhaite%20commander%20le%20Sac%20Monarque." class="btn-reserve" data-lang="fr">Commander</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- AUTOMATIC CLIENT TESTIMONIAL SLIDER -->
+    <section class="testimonials-section">
+      <div class="section-header" style="padding-top: 15px;">
+        <p class="section-subtitle" data-lang="ht">Eksperyans Kliyan</p>
+        <p class="section-subtitle" data-lang="fr">Témoignages Clients</p>
+        <h3 class="section-title" data-lang="ht">Temwayaj Eksklizif</h3>
+        <h3 class="section-title" data-lang="fr">Voix de l'Élite</h3>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="testimonial-card-container">
+        <div class="quote-icon">“</div>
+        
+        <!-- Slide 1 -->
+        <div class="testimonial-slide active">
+          <p class="testimonial-text" data-lang="ht">
+            "Koleksyon 'Rèn Solèy' la depase tout sa m te espere. Kalite kouti yo ak twal swa a bay yon santiman wayal vrèman unik."
+          </p>
+          <p class="testimonial-text" data-lang="fr">
+            "La robe 'Reine Soleil' dépasse toutes les attentes. La finesse des finitions et la pureté de la soie incarnent la perfection absolue."
+          </p>
+          <div class="client-name">Valérie D.</div>
+          <div class="client-location" data-lang="ht">Pétion-Ville, Ayiti</div>
+          <div class="client-location" data-lang="fr">Pétion-Ville, Haïti</div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="testimonial-slide">
+          <p class="testimonial-text" data-lang="ht">
+            "Pafen Eliksir Nwa a se yon chèfdèv. Li rete sou kò w tout jounen an ak yon lodè nòb ki atire konpliman tout kote m pase."
+          </p>
+          <p class="testimonial-text" data-lang="fr">
+            "Le parfum Élixir Noir est un chef-d'œuvre olfactif. Un sillage noble et captivant qui ne laisse personne indifférent."
+          </p>
+          <div class="client-name">Jean-Marc P.</div>
+          <div class="client-location" data-lang="ht">Monreyal, Kanada</div>
+          <div class="client-location" data-lang="fr">Montréal, Canada</div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="testimonial-slide">
+          <p class="testimonial-text" data-lang="ht">
+            "Sèvis konsyèj la sou WhatsApp te trè rapid e pwofesyonèl. Sak 'Monak' la te rive byen emballé tankou yon bijou presye."
+          </p>
+          <p class="testimonial-text" data-lang="fr">
+            "Le service de conciergerie WhatsApp est d'une rapidité remarquable. Mon sac Monarque est arrivé emballé comme un joyau précieux."
+          </p>
+          <div class="client-name">Florence B.</div>
+          <div class="client-location" data-lang="ht">Miami, USA</div>
+          <div class="client-location" data-lang="fr">Miami, USA</div>
+        </div>
+
+        <div class="slider-indicators">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPERATIONAL & VIP ACTION BLOCK -->
+    <section class="contact-block">
+      <div class="info-card">
+        <div class="clock-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div class="schedule-title" data-lang="ht">Lè Louvri • Boutik Privé</div>
+        <div class="schedule-title" data-lang="fr">Horaires d'Ouverture • Boutique Privée</div>
+        
+        <div class="schedule-hours" data-lang="ht">Lendi – Samdi : 8:00 AM – 5:00 PM</div>
+        <div class="schedule-hours" data-lang="fr">Lundi – Samedi : 08h00 – 17h00</div>
+
+        <div class="schedule-sub" data-lang="ht">Dimanch: Sèlman sou randevou VIP</div>
+        <div class="schedule-sub" data-lang="fr">Dimanche: Exclusivement sur rendez-vous VIP</div>
+      </div>
+
+      <div class="action-group">
+        <!-- Prominent WhatsApp Checkout CTA -->
+        <a href="https://wa.me/50930000000?text=Bonjou%20Elegans%20Kreòl,%20mwen%20ta%20renmen%20kontakte%20konsyèj%20la%20pou%20yon%20kòmand%20espesyal." class="btn-action btn-whatsapp" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.031 2C6.511 2 2.022 6.488 2.022 12.008c0 1.96.568 3.791 1.554 5.345L2 22l4.821-1.547a9.98 9.98 0 0 0 5.21 1.455h.004c5.518 0 10.007-4.488 10.007-10.008.001-5.52-4.488-10.009-10.011-10.009zm5.82 14.288c-.244.685-1.42 1.309-1.97 1.39-.52.078-1.196.11-3.486-.843-2.73-1.135-4.489-3.905-4.625-4.088-.137-.182-1.108-1.474-1.108-2.81 0-1.336.7-1.993.95-2.261.248-.268.543-.336.723-.336.182 0 .365.002.524.01.17.009.395-.065.617.47.228.548.777 1.902.846 2.042.069.14.114.303.023.485-.091.182-.137.296-.273.456-.137.16-.289.356-.412.478-.137.136-.28.283-.12.557.16.274.71 1.171 1.523 1.895 1.047.931 1.929 1.22 2.203 1.356.273.137.433.114.593-.069.16-.182.685-.798.868-1.072.182-.274.365-.228.616-.137.251.091 1.597.753 1.871.89.274.137.457.205.525.32.068.114.068.662-.176 1.347z"/>
+          </svg>
+          <span data-lang="ht">Kòmande Sou WhatsApp</span>
+          <span data-lang="fr">Commander par WhatsApp</span>
+        </a>
+
+        <!-- Concierge Email Link -->
+        <a href="mailto:vip@eleganskreol.com?subject=Demande%20de%20Conciergerie%20-%20Elegans%20Kreòl" class="btn-action btn-email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+          <span data-lang="ht">Sèvis Kliyan VIP</span>
+          <span data-lang="fr">Conciergerie VIP</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-brand">Elegans Kreòl</div>
+      <p class="footer-desc" data-lang="ht">
+        Atelye Haute Couture ak Kosmetik Fine.<br>
+        Port-au-Prince • Paris • Cap-Haïtien
+      </p>
+      <p class="footer-desc" data-lang="fr">
+        Atelier de Haute Couture et Cosmétique Fine.<br>
+        Port-au-Prince • Paris • Cap-Haïtien
+      </p>
+      <div class="footer-copy">© 2025 Elegans Kreòl. All Rights Reserved.</div>
+    </footer>
+
+  </div>
+
+  <!-- =========================================
+       VANILLA JAVASCRIPT LOGIC
+  ========================================= -->
+  <script>
+    // 1. Interactive Luxury Preloader
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => {
+        preloader.classList.add('preloader-hidden');
+      }, 700);
+    });
+
+    // 2. High Performance Bilingual System
+    function setLanguage(lang) {
+      const htmlEl = document.documentElement;
+      const btnHt = document.getElementById('btn-ht');
+      const btnFr = document.getElementById('btn-fr');
+
+      if (lang === 'fr') {
+        htmlEl.className = 'lang-fr';
+        btnFr.classList.add('active');
+        btnHt.classList.remove('active');
+      } else {
+        htmlEl.className = 'lang-ht';
+        btnHt.classList.add('active');
+        btnFr.classList.remove('active');
+      }
+    }
+
+    // 3. Testimonial Smooth Auto Slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      slides.forEach((slide) => slide.classList.remove('active'));
+      dots.forEach((dot) => dot.classList.remove('active'));
+
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }
+
+    // Auto rotate every 4.5 seconds
+    let slideInterval = setInterval(nextSlide, 4500);
+
+    // Click indicator dot support
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        currentSlide = idx;
+        showSlide(currentSlide);
+        slideInterval = setInterval(nextSlide, 4500);
+      });
+    });
+  </script>
+</body>
+</html>
